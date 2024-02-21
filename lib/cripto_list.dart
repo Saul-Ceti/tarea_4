@@ -38,6 +38,35 @@ class CryptoList extends StatelessWidget {
             trailing: CircleAvatar(
               child: Text("${criptos[index]["trust_score"]}",),
             ),
+            // On touch event mensaje de alerta con todos los datos
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text("${criptos[index]["name"]}"),
+                    content: Column(
+                      children: <Widget>[
+                        Text("Country: ${criptos[index]["country"]}"),
+                        Text("Year Established: ${criptos[index]["year_established"]}"),
+                        Text("Trust Score: ${criptos[index]["trust_score"]}"),
+                        Text("Trust Score Rank: ${criptos[index]["trust_score_rank"]}"),
+                        Text("Trade Volume: ${criptos[index]["trade_volume_24h_btc"]}"),
+                        Text("Trade Volume Rank: ${criptos[index]["trade_volume_24h_btc_normalized"]}"),
+                      ],
+                    ),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text("Close"),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
           );
         }
       },
